@@ -1,0 +1,30 @@
+# Core pipeline dependencies
+prefect>=2.14.0,<3.0.0
+pandas>=2.0.0
+requests>=2.31.0
+pyarrow>=14.0.0
+
+# Azure
+azure-storage-blob>=12.19.0
+azure-identity>=1.15.0
+
+# Data Warehouse & dbt
+dbt-core>=1.7.0
+dbt-snowflake>=1.7.0
+dbt-duckdb>=1.7.0
+snowflake-connector-python>=3.6.0
+duckdb>=0.9.0
+
+# Dashboard
+streamlit>=1.28.0
+plotly>=5.18.0
+
+# Infrastructure as Code (IaC)
+pulumi>=3.100.0
+pulumi-azure-native>=2.25.0
+
+# Development & Testing
+pytest>=7.4.0
+black>=23.0.0
+ruff>=0.1.0
+mypy>=1.7.0

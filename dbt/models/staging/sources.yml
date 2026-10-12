@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: fars_raw
+    schema: "{{ target.schema }}"
+    tables:
+      - name: raw_accidents
+        description: Raw FARS accident data loaded from CSV

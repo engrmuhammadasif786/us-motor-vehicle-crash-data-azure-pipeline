@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: fars-azurite
+    ports:
+      - "10000:10000"  # Blob
+      - "10001:10001"  # Queue
+      - "10002:10002"  # Table
+    volumes:
+      - azurite-data:/data
+    command: "azurite-blob --blobHost 0.0.0.0 --blobPort 10000 --silent --skipApiVersionCheck"
+
+  prefect:
+    image: prefecthq/prefect:2.14-python3.11
+    container_name: fars-prefect
+    ports:
+      - "4200:4200"
+    environment:
+      - PREFECT_API_URL=http://127.0.0.1:4200/api
+      - PREFECT_HOME=/prefect
+    volumes:
+      - prefect-data:/prefect
+    command: prefect server start --host 0.0.0.0
+
+volumes:
+  azurite-data:
+  prefect-data:

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_fars_accidents
+    description: Staged FARS accident data with cleaned column names and types
+    columns:
+      - name: case_number
+        description: Unique case number for each crash
+        tests:
+          - not_null
+          - unique
+      - name: crash_date
+        description: Date of the crash
+        tests:
+          - not_null
+      - name: state_name
+        description: State where the crash occurred
+        tests:
+          - not_null
+      - name: fatalities
+        description: Number of fatalities in the crash
+        tests:
+          - not_null

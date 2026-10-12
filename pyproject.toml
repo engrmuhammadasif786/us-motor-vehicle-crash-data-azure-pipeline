@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fars-crash-pipeline"
+version = "0.1.0"
+description = "End-to-end data pipeline for U.S. FARS crash data on Azure + Snowflake"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
+dependencies = [
+    "azure-identity>=1.15.0",
+    "azure-storage-blob>=12.19.0",
+    "black>=23.0.0",
+    "dbt-core>=1.7.0",
+    "dbt-duckdb>=1.7.0",
+    "dbt-snowflake>=1.7.0",
+    "duckdb>=0.9.0",
+    "mypy>=1.7.0",
+    "pandas>=2.0.0",
+    "plotly>=5.18.0",
+    "prefect>=2.14.0,<3.0.0",
+    "pulumi>=3.100.0",
+    "pulumi-azure-native>=2.25.0",
+    "pyarrow>=14.0.0",
+    "pytest>=7.4.0",
+    "requests>=2.31.0",
+    "ruff>=0.1.0",
+    "snowflake-connector-python>=3.6.0",
+    "streamlit>=1.28.0",
+]
+
+[project.optional-dependencies]
+pipelines = [
+    "prefect>=2.14.0,<3.0.0",
+    "pandas>=2.0.0",
+    "requests>=2.31.0",
+    "azure-storage-blob>=12.19.0",
+    "azure-identity>=1.15.0",
+    "pyarrow>=14.0.0",
+]
+dbt = [
+    "dbt-core>=1.7.0",
+    "dbt-snowflake>=1.7.0",
+    "dbt-duckdb>=1.7.0",
+]
+dashboard = [
+    "streamlit>=1.28.0",
+    "plotly>=5.18.0",
+    "pandas>=2.0.0",
+    "snowflake-connector-python>=3.6.0",
+    "duckdb>=0.9.0",
+]
+infra = [
+    "pulumi>=3.100.0",
+    "pulumi-azure-native>=2.25.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+all = [
+    "fars-crash-pipeline[pipelines,dbt,dashboard,infra,dev]"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pipelines*", "infrastructure*", "dashboards*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true

@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fct_accidents
+    description: Fact table containing one row per fatal crash
+    columns:
+      - name: case_number
+        description: Unique identifier for each crash
+        tests:
+          - not_null
+          - unique
+      - name: crash_date
+        description: Date when the crash occurred
+        tests:
+          - not_null
+      - name: state_sk
+        description: Surrogate key linking to dim_state
+        tests:
+          - relationships:
+              to: ref('dim_state')
+              field: state_sk
+      - name: fatalities
+        description: Number of fatalities in the crash
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: Date dimension for time-based analysis
+    columns:
+      - name: date_key
+        description: Primary key - date value
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_state
+    description: State dimension with surrogate keys
+    columns:
+      - name: state_sk
+        description: Surrogate key for state
+        tests:
+          - not_null
+          - unique
+      - name: state_name
+        description: Name of the state
+        tests:
+          - not_null
+          - unique

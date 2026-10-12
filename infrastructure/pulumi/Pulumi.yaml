@@ -1,0 +1,3 @@
+name: fars-crash-infra
+runtime: python
+description: Azure infrastructure for FARS crash data pipeline
